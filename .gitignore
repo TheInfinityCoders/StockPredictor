@@ -55,6 +55,12 @@ cover/
 *.mo
 *.pot
 
+# VS Code Stuff:
+.vscode/
+
+# Rough Work
+rough.py
+
 # Django stuff:
 *.log
 local_settings.py
