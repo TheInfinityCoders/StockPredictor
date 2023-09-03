@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block title %} Home {% endblock %} {% block body %}
+{% extends 'base.html' %} {% block title %} Slope-TSLA {% endblock %} {% block body %}
 
 <div class="grid grid-cols-4 gap-4 mx-10">
 	<div id="chart" class="col-span-3">
@@ -8,17 +8,66 @@
 			data-labels="{{labels}}"
 			data-close="{{close}}"
 			data-company="{{company}}"
+            data-range="{{range}}"
 		></canvas>
 	</div>
-	<div
-		class="grid grid-flow-row p-6 mt-40 h-fit bg-white rounded-xl shadow-lg"
-	>
-        <div>
-            <img src="https://logotaglines.com/wp-content/uploads/2021/02/tesla_logo_tagline-slogan-customer-care.png" class="inline w-20 h-20"/>
-            <p class="inline-block bold font-semibold text-2xl text-center ps-4">{{company}}</p>
+    <div class="grid grid-flow-row">
+        <div
+            class="grid grid-flow-row p-6 mt-16 h-fit bg-white rounded-xl shadow-lg"
+        >
+            <div class="mb-4">
+                <img src="https://logotaglines.com/wp-content/uploads/2021/02/tesla_logo_tagline-slogan-customer-care.png" class="inline w-20 h-20"/>
+                <p class="inline-block bold font-semibold text-2xl text-center ps-4">{{company}}
+                    <span class="text-xl">({{ticker}})</span>
+                </p>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Date</span>
+                <span class="float-right text-left">{{last_work_date}} </span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Open</span>
+                <span class="float-right text-left">{{last_open}} USD</span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Close</span>
+                <span class="float-right text-left">{{last_close}} USD</span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">High</span>
+                <span class="float-right text-left">{{last_high}} USD</span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Low</span>
+                <span class="float-right text-left">{{last_low}} USD</span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Adj Close</span>
+                <span class="float-right text-left">{{last_adj_close}} USD</span>
+            </div>
+            <div class="mx-10">
+                <span class="font-semibold ">Volume</span>
+                <span class="float-right text-left">{{last_volume}} </span>
+            </div>
         </div>
-	</div>
+        <div
+            class="grid grid-flow-row p-6 h-fit bg-white rounded-xl shadow-lg"
+        >
+            <div>       
+                <form method="post">
+                    <div class="text-xl font-semibold p-1 mb-2">Predict : Close</div>
+                    <div class="mb-4">
+                        <input class="inline rounded p-1 border-2 border-black" id="date-input" type="date" name="pred_date" required />
+                        <input class="float-right w-32 rounded p-1 border-2 border-black" type="text" value="{{pred_data}}" placeholder="Prediction..." readonly />
+                    </div>
+                    <button class="text-white bg-red-600 hover:bg-red-700 p-2 rounded" type="submit">Predict!</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
 </div>
+
 
 <script type="text/javascript" src="static/js/scripts.js"></script>
 

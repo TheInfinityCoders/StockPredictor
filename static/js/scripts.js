@@ -1,9 +1,13 @@
+//Chart Drawing
+
 const ctx = document.getElementById("myChart");
 
 const company = ctx.dataset.company;
 
 var labels = ctx.dataset.labels.split(",");
 var close_data = ctx.dataset.close.split(",");
+var range = ctx.dataset.range;
+console.log(range);
 
 new Chart(ctx, {
     type: "line",
@@ -35,10 +39,10 @@ new Chart(ctx, {
                 beginAtZero: true,
                 title: {
                     display: true,
-                    text: "Closed Price (USD)",
+                    text: "Closing Price (USD)",
                     color: "black",
                     font: {
-                        size: 14
+                        size: 16
                     }
                 },
                 ticks: {
@@ -55,6 +59,14 @@ new Chart(ctx, {
                 },
             },
             x: {
+                title: {
+                    display: true,
+                    text: range,
+                    color: "black",
+                    font: {
+                        size: 16
+                    }
+                },
                 ticks: {
                     color: "black",
                     font: {
@@ -90,3 +102,21 @@ new Chart(ctx, {
         },
     },
 });
+
+// Date Input defaults to today
+document.getElementById("date-input").value = new Date().toISOString().split("T")[0]
+
+// Navbar dropdown list
+function displayMenu() {
+    $("#dropdown-menu").toggleClass("hidden");
+    $("#dropdown-menu").toggleClass("block");
+}
+
+function enteredMenu() {
+    let menu = $("#dropdown-menu");
+
+    menu.on("mouseleave", () => {
+        menu.toggleClass("hidden");
+        menu.toggleClass("block");
+    });
+}
